@@ -31,6 +31,7 @@ namespace ContactSystem
                     Console.WriteLine("4 - Remover contatos.");
                     Console.WriteLine("0 - Fechar o programa.");
                     validacaoEntrada = int.TryParse(Console.ReadLine(), out opcaoMenu);
+                    Console.WriteLine(opcaoMenu);
 
                     if (validacaoEntrada is false)
                     {
@@ -44,13 +45,14 @@ namespace ContactSystem
                 } while (validacaoEntrada is not true);
 
 
-                /*switch (opcao)
+                switch (opcaoMenu)
                 {
                     case 1:
-                        Console.WriteLine("Selecionada a opção 1");
+                        AdicionaContato();
                         break;
                     case 2:
                         Console.WriteLine("Selecionada a opção 2");
+                        Console.ReadKey();
                         break;
                     case 3:
                         Console.WriteLine("Selecionada a opção 3");
@@ -61,8 +63,8 @@ namespace ContactSystem
                     default:
                         Console.WriteLine("Selecione uma opção válida.");
                         break;
-                }*/
-                if (opcaoMenu == 1)
+                }
+                /*if (opcaoMenu == 1)
                 {
                     AdicionaContato();
 
@@ -77,7 +79,7 @@ namespace ContactSystem
                 else
                 {
                     Console.WriteLine("Digite uma opção válida.");
-                }       
+                } */   
             } while (opcaoMenu != 0);
 
         }
@@ -119,7 +121,7 @@ namespace ContactSystem
 
                 for (int i = 0; i < c.Count; i++)
                 {
-                    Console.WriteLine($"Contato {i}");
+                    Console.WriteLine($"Contato {i + 1}");
                     Console.WriteLine($"Nome: {c[i].nome}");
                     Console.WriteLine($"telefone: {c[i].telefone}");
                     Console.WriteLine($"email: {c[i].email}");

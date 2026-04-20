@@ -35,6 +35,7 @@ namespace ContactSystem
                     Console.WriteLine("2 - Lista de contatos.");
                     Console.WriteLine("3 - Editar contatos.");
                     Console.WriteLine("4 - Remover contatos.");
+                    Console.WriteLine("5 - Buscar contatos."); 
                     Console.WriteLine("0 - Fechar o programa.");
                     validacaoEntrada = int.TryParse(Console.ReadLine(), out opcaoMenu);
                     Console.WriteLine(opcaoMenu);
@@ -64,6 +65,9 @@ namespace ContactSystem
                         break;
                     case 4:
                         RemoverContato();
+                        break;
+                    case 5:
+                        BuscarContato();
                         break;
                     case 0:
                         Console.WriteLine("Programa encerrado.");
@@ -280,6 +284,51 @@ namespace ContactSystem
             }
 
             SalvaContatos();
+        }
+
+        public void BuscarContato()
+        {
+            Console.Clear();
+
+            if (c.Count == 0)
+            {
+                Console.WriteLine("Você não possui contatos.");
+                Console.WriteLine("Clique qualquer tecla para retornar ao menu.");
+                Console.ReadKey();
+            }
+            else
+            {
+                string nomeContato;
+
+                Console.WriteLine("Qual o nome do contato que deseja buscar?");
+                nomeContato = Console.ReadLine();
+
+                List<Contatos> buscaContato = new List<Contatos>();
+
+                var contatoEncontrado = c.Where(contato => contato.nome.Contains(nomeContato, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                buscaContato = contatoEncontrado;
+
+                if (buscaContato.Count > 0) {
+
+                    for (int i = 0; i < contatoEncontrado.Count; i++)
+                    {
+                        //Console.WriteLine($"Contato {contatoEncontrado.i + 1}");
+                        Console.WriteLine($"Nome: {buscaContato[i].nome}");
+                        Console.WriteLine($"telefone: {buscaContato[i].telefone}");
+                        Console.WriteLine($"email: {buscaContato[i].email}");
+                        Console.WriteLine("-----------------------------");
+                  
+                    }
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Nenhum contato com esse nome");
+                    Console.ReadKey();
+                }
+
+            }
         }
 
         public void SalvaContatos()
